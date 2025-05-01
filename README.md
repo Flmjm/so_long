@@ -2,27 +2,26 @@ Notes :
 
 # **Tableau des événements d'écoute avec mlx_hook()**
 
-*Code d'événement	Type d'événement	Code mlx_hook	Description*
+Key	Event	 	Key	Event	 	Key	Event
 
-2	KeyPress (touche pressée)	mlx_hook(win, 2, ...)	Lorsque l'utilisateur appuie sur une touche.
+02	KeyPress	 	14	NoExpose	 		26	CirculateNotify
+03	KeyRelease	 	15	VisibilityNotify	27	CirculateRequest
+04	ButtonPress	 	16	CreateNotify	 	28	PropertyNotify
+05	ButtonRelease	17	DestroyNotify	 	29	SelectionClear
+06	MotionNotify	18	UnmapNotify	 		30	SelectionRequest
+07	EnterNotify	 	19	MapNotify	 		31	SelectionNotify
+08	LeaveNotify	 	20	MapRequest	 		32	ColormapNotify
+09	FocusIn	 		21	ReparentNotify	 	33	ClientMessage
+10	FocusOut	 	22	ConfigureNotify	 	34	MappingNotify
+11	KeymapNotify 	23	ConfigureRequest	35	GenericEvent
+12	Expose	 		24	GravityNotify	 	36	LASTEvent
+13	GraphicsExpose 	25	ResizeRequest	 	 	 
 
-3	KeyRelease (touche relâchée)	mlx_hook(win, 3, ...)	Lorsque l'utilisateur relâche une touche.
-
-4	ButtonPress (clic souris)	mlx_hook(win, 4, ...)	Lorsque l'utilisateur appuie sur un bouton de la souris.
-
-5	ButtonRelease (clic relâché)	mlx_hook(win, 5, ...)	Lorsque l'utilisateur relâche un bouton de la souris.
-
-6	MotionNotify (mouvement souris)	mlx_hook(win, 6, ...)	Lorsque la souris se déplace sur la fenêtre.
-
-12	Expose (rafraîchissement fenêtre)	mlx_hook(win, 12, ...)	Lorsque la fenêtre nécessite un rafraîchissement (par exemple après un redimensionnement).
-
-17	DestroyNotify (fermeture fenêtre)	mlx_hook(win, 17, ...)	Lorsque l'utilisateur ferme la fenêtre.
-
-22	FocusIn/FocusOut (perte/gain de focus)	mlx_hook(win, 22, ...)	Lorsque la fenêtre gagne ou perd le focus.
+https://tronche.com/gui/x/xlib/events/
 
 # **Tableau des keycodes (codes de touches) dans MiniLibX**
 
-### *Keycode		Touche / Action*
+### *Keycode		Touche / Action
 
 	65307	Échap (Escape)
 	65400	Entrée (Enter)
@@ -68,3 +67,4 @@ Notes :
 	88				X
 	89				Y
 	90				Z
+x
