@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:10:40 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 17:27:14 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:42:32 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	*check_line(mlx_window *params)
 	{
 		j++;
 		i = 0;
+		if (params->buf)
+			free(params->buf);
 		params->buf = get_next_line(params->fd);
 		if (!params->buf)
 			break ;

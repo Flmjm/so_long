@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:47:37 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 18:19:30 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:34:48 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,27 @@ int	main(int argc, char **argv)
 
 int	next_frame(mlx_window *params)
 {
-	static int	a = 0;
-	a++;
-	if (params->array[params->y_player / 32][params->x_player / 32] != 1)
+	params->next_frame += 1;
+	if (params->array[params->y_player / TEXTURE_SIZE][params->x_player / TEXTURE_SIZE] != 1)
 	{
 		params->old_x_player = params->x_player;
 		params->old_y_player = params->y_player;
 	}
-	check_position_player(params);
-	if (a == 500)
+	if (params->array[params->y_player / TEXTURE_SIZE][params->x_player / TEXTURE_SIZE] == 4 && (params->c_nbr == params->coin_collected))
+		free_mlx(params);
+	if (params->next_frame == 7000)
 	{
-		a = 0;
-		if (params->array[params->y_player / 32 + 1][params->x_player/ 32] != 1)
-			params->y_player += 1;
+		params->next_frame = 0;
+		if (params->array[params->y_player / TEXTURE_SIZE + 1][params->x_player/ TEXTURE_SIZE] != 1)
+		{
+			params->is_jumping = 1;
+			params->y_player += TEXTURE_SIZE;
+		}
+		else
+			params->is_jumping = 0;
 	}
-	refresh_character(params);
+	if (params->is_jumping == 1)
+		refresh_character(params);
 	return (0);
 }
 
@@ -63,7 +69,6 @@ void	*init_map(mlx_window *params)
 	params->y_player = 0;
 	params->x_window = 0;
 	params->y_window = 0;
-	params->time = 0;
 	params->array = NULL;
 	params->c_nbr = 0;
 	params->e_nbr = 0;
@@ -78,6 +83,8 @@ void	*init_map(mlx_window *params)
 	params->old_x_player = 0;
 	params->old_y_player = 0;
 	params->count_movement = 0;
+	params->is_jumping = 0;
+	params->next_frame = 0;
 	return (params);
 }
 

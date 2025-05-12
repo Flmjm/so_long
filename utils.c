@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:49:29 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 18:12:18 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 15:48:57 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void	refresh_character(mlx_window *params)
 
 void	check_position_player(mlx_window *params)
 {
-	if (params->array[params->y_player / 32][params->x_player / 32] == 1)
+	if (params->array[params->y_player / TEXTURE_SIZE][params->x_player / TEXTURE_SIZE] == 1)
 	{
 		params->x_player = params->old_x_player;
 		params->y_player = params->old_y_player;
 	}
 	refresh(params);
-	// ft_printf("old x:%d | old y:%d || x:%d | y:%d\n", params->old_x_player / 32, params->old_y_player / 32, params->x_player / 32, params->y_player / 32);
 }
 
 int free_mlx(mlx_window *params)

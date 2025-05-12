@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:59 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 18:01:46 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:08:49 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "minilibx/mlx.h"
 # include "libft/libft.h"
 # include <math.h>
+
+# ifndef TEXTURE_SIZE
+# define TEXTURE_SIZE 32
+# endif
 
 typedef struct mlx_window
 {
@@ -32,7 +36,8 @@ typedef struct mlx_window
 	int		old_y_player;
 	int		x_window;
 	int		y_window;
-	int		time;
+	int		x_exit;
+	int		y_exit;
 	int		count_movement;
 	int		map_x;
 	int		map_y;
@@ -46,6 +51,8 @@ typedef struct mlx_window
 	char	*path;
 	int		**array;
 	int		coin_collected;
+	int		is_jumping;
+	int		next_frame;
 } mlx_window;
 
 // check_map.c
@@ -75,6 +82,7 @@ void		free_array(mlx_window *params);
 void		setup_hook(mlx_window *params);
 int			handle_key(int keycode, mlx_window *params);
 int			resize_window(int new_size_y, int new_size_x, mlx_window *params);
+void		jumping(mlx_window *player);
 
 // error.c
 void		check_map_error(mlx_window *params);
@@ -86,5 +94,6 @@ void		init_window(mlx_window *window);
 void		init_graphic(mlx_window *window);
 void		init_map_graphic(mlx_window *window);
 void		refresh(mlx_window *window);
+void	loop_init_map(mlx_window *window, int x, int y);
 
 # endif

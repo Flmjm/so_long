@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:49:44 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 17:13:03 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 16:04:57 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ int	handle_key(int keycode, mlx_window *params)
 	if (keycode == 65307)
 		free_mlx(params);
 	else if (keycode == 65362)
-		params->y_player += -32;
+		jumping(params);
 	else if (keycode == 65364)
-		params->y_player += 32;
+	{
+		params->is_jumping = 0;
+	}
 	else if (keycode == 65363)
-		params->x_player += 32;
+		params->x_player += TEXTURE_SIZE;
 	else if (keycode == 65361)
-		params->x_player += -32;
+		params->x_player += -TEXTURE_SIZE;
 	refresh_character(params);
 	return (0);
 }
@@ -43,4 +45,14 @@ int	resize_window(int new_size_y, int new_size_x, mlx_window *params)
 	params->x_window = new_size_x;
 	params->y_window = new_size_y;
 	return (0);
+}
+
+void	jumping(mlx_window *player)
+{
+	if (player->is_jumping == 0)
+	{
+		player->is_jumping = 1;
+		player->next_frame = 0;
+		player->y_player += -TEXTURE_SIZE;
+	}
 }
