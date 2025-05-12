@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:11 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 18:01:37 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:32:20 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	fill_map(mlx_window *map) //add some free heree
 	map->fd = open(map->path, O_RDONLY);
 	while (y < map->map_y)
 	{
-		map->buf = NULL;
+		if (map->buf)
+			free(map->buf);
 		map->buf = get_next_line(map->fd);
 		x = 0;
 		while (x < map->map_x)
@@ -59,5 +60,17 @@ void	fill_map(mlx_window *map) //add some free heree
 			x++;
 		}
 		y++;
+	}
+	map->error = 0;
+	while (map->error == 0)
+	{
+		if (map->buf)
+		{
+			free(map->buf);
+			map->buf = NULL;
+		}
+		else
+			break ;
+		map->buf = get_next_line(map->fd);
 	}
 }

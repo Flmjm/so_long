@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:47:37 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 16:34:48 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:09:08 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	mlx_window params;
-	// map_params	map;
-	
+	mlx_window params;	
 	// start parse-------------------------------------------
 	if (argc > 2)
 		print_error("Error\nToo much arguments !", NULL);
@@ -40,7 +38,7 @@ int	next_frame(mlx_window *params)
 	}
 	if (params->array[params->y_player / TEXTURE_SIZE][params->x_player / TEXTURE_SIZE] == 4 && (params->c_nbr == params->coin_collected))
 		free_mlx(params);
-	if (params->next_frame == 7000)
+	if (params->next_frame == 1000)
 	{
 		params->next_frame = 0;
 		if (params->array[params->y_player / TEXTURE_SIZE + 1][params->x_player/ TEXTURE_SIZE] != 1)

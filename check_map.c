@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:10:40 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 16:42:32 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:40:54 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	if_ext_ok(mlx_window *params)
 		i = i - 4;
 	ok = ft_strncmp(&params->path[i], ".ber", 4);
 	if (ok != 0)
-		print_error("Error\nMap is not a .ber", params);
+		print_error("Map is not a .ber", params);
 }
 
 void	*get_map_params(mlx_window *params)
@@ -55,8 +55,6 @@ void	*check_line(mlx_window *params)
 	{
 		j++;
 		i = 0;
-		if (params->buf)
-			free(params->buf);
 		params->buf = get_next_line(params->fd);
 		if (!params->buf)
 			break ;

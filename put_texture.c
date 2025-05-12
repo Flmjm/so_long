@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:27:12 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 16:33:19 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:00:08 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	init_map_graphic(mlx_window *window)
 	int	x;
 	
 	y = 0;
-	while (window->array[y])
+	while (y < window->map_y)
 	{
 		x = 0;
-		while (window->array[y][x])
+		while (x < window->map_x)
 		{
 			loop_init_map(window, x, y);
 			x++;

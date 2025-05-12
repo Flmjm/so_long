@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:37:49 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/05 17:22:26 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:42:13 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ void	print_error(char *error, mlx_window *params)
 }
 void	kill_process(mlx_window *map)
 {
-	while (map->buf)
-	{
-		if (map->buf)
-			free(map->buf);
-		map->buf = get_next_line(map->fd);
-	}
+	if (map->buf)
+		free(map->buf);
+	map->buf = NULL;
+	
 }

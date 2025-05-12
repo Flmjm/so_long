@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:49:29 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 15:48:57 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 23:34:32 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,30 @@ int free_mlx(mlx_window *params)
 	{
 		mlx_destroy_window(params->mlx, params->window);
 		mlx_destroy_image(params->mlx, params->character_texture);
+		mlx_destroy_image(params->mlx, params->coin_texture);
+		mlx_destroy_image(params->mlx, params->exit_texture);
+		mlx_destroy_image(params->mlx, params->wall_texture);
+		mlx_destroy_image(params->mlx, params->background_texture);
 	}
 	if (params->mlx)
 	{	
 		mlx_destroy_display(params->mlx);
 		free(params->mlx);
 	}
-	// free_array(params);
+	free_array(params);
 	exit (0);
 }
 
-// void	free_array(mlx_window *params)
-// {
-// 	int i;
+void	free_array(mlx_window *params)
+{
+	int	x;
+	int	y;
 
-// 	i = 0;
-// 	while (i < params->map_x)
-// 	{
-// 		free(params->array[i]);
-// 		params->array[i] = NULL;
-// 		i++;
-// 	}
-// }
+	y = 0;
+	while (y < params->map_y)
+	{
+		free(params->array[y]);
+		y++;
+	}
+	free(params->array);
+}

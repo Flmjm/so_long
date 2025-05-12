@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 20:46:35 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/04 13:56:53 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/12 22:50:00 by vboxuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*clean(char *str)
 	}
 	i++;
 	new_str = malloc(sizeof(char) * (ft_strlen(str + i) + 1));
-	if (!new_str || ft_strlen(new_str) == 0)
+	if (!new_str)
 		return (NULL);
 	j = 0;
 	while (str[i])
