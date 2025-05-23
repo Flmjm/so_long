@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:10:40 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 23:40:54 by vboxuser         ###   ########.fr       */
+/*   Updated: 2025/05/23 00:14:40 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	if_ext_ok(mlx_window *params)
 void	*get_map_params(mlx_window *params)
 {
 	if_ext_ok(params);
-	init_map(params);
 	params->fd = open(params->path, O_RDONLY);
 	if (params->fd < 1)
 		print_error("No file", params);

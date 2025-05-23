@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 14:27:12 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 23:00:08 by vboxuser         ###   ########.fr       */
+/*   Updated: 2025/05/23 05:47:33 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,17 @@ void	init_graphic(mlx_window *window)
 	
 	height = TEXTURE_SIZE;
 	width = TEXTURE_SIZE;
-	window->wall_texture = mlx_xpm_file_to_image(window->mlx, "test/block.xpm", &width, &height);
-	window->character_texture = mlx_xpm_file_to_image(window->mlx,"test/aled.xpm", &width, &height);
-	window->coin_texture = mlx_xpm_file_to_image(window->mlx,"test/coin.xpm", &width, &height);
-	window->exit_texture = mlx_xpm_file_to_image(window->mlx,"test/exit.xpm", &width, &height);
-	window->background_texture = mlx_xpm_file_to_image(window->mlx, "test/mdr.xpm", &width, &height);
+	window->wall_texture = mlx_xpm_file_to_image(window->mlx, "texture/wall/middle.xpm", &width, &height);
+	window->character_texture_right = mlx_xpm_file_to_image(window->mlx,"texture/player/player_idle_right.xpm", &width, &height);
+	window->character_texture_left= mlx_xpm_file_to_image(window->mlx,"texture/player/player_idle_left.xpm", &width, &height);
+	window->coin_texture = mlx_xpm_file_to_image(window->mlx,"texture/object/coins/coins_1.xpm", &width, &height);
+	window->coin_texture_2 = mlx_xpm_file_to_image(window->mlx,"texture/object/coins/coins_2.xpm", &width, &height);
+	window->exit_texture = mlx_xpm_file_to_image(window->mlx,"texture/object/exit/exit.xpm", &width, &height);
+	window->character_fall_texture_right = mlx_xpm_file_to_image(window->mlx, "texture/player/player_fall_right.xpm", &width, &height);
+	window->character_fall_texture_left = mlx_xpm_file_to_image(window->mlx, "texture/player/player_fall_left.xpm", &width, &height);
+	window->exit_open_texture = mlx_xpm_file_to_image(window->mlx, "texture/object/exit/exit_open.xpm", &width, &height);
+	window->background_texture = mlx_xpm_file_to_image(window->mlx, "texture/background/back.xpm", &width, &height);
+	
 }
 
 void	init_map_graphic(mlx_window *window)
@@ -67,7 +73,7 @@ void	loop_init_map(mlx_window *window, int x, int y)
 				window->x_player = x * TEXTURE_SIZE;
 				window->y_player = y * TEXTURE_SIZE;
 				mlx_put_image_to_window(window->mlx, window->window, window->background_texture, x *TEXTURE_SIZE, y * TEXTURE_SIZE);
-				mlx_put_image_to_window(window->mlx, window->window, window->character_texture, x * TEXTURE_SIZE, y * TEXTURE_SIZE);
+				mlx_put_image_to_window(window->mlx, window->window, window->character_texture_right, x * TEXTURE_SIZE, y * TEXTURE_SIZE);
 			}
 			else if (window->array[y][x] == 3)
 				mlx_put_image_to_window(window->mlx, window->window, window->coin_texture, x * TEXTURE_SIZE, y * TEXTURE_SIZE);
@@ -93,7 +99,7 @@ void	refresh(mlx_window *window)
 			window->array[y][x] = 5;
 			window->coin_collected++;
 		if (window->c_nbr == window->coin_collected)
-			mlx_put_image_to_window(window->mlx, window->window, window->coin_texture, window->x_exit * TEXTURE_SIZE, window->y_exit * TEXTURE_SIZE);
+			mlx_put_image_to_window(window->mlx, window->window, window->exit_open_texture, window->x_exit * TEXTURE_SIZE, window->y_exit * TEXTURE_SIZE);
 	}
 	else if (window->array[y][x] == 4)
 	{

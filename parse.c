@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:11 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 23:32:20 by vboxuser         ###   ########.fr       */
+/*   Updated: 2025/05/23 06:10:11 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	malloc_array(mlx_window *map)
 	map->array[i] = NULL;
 }
 
-void	fill_map(mlx_window *map) //add some free heree
+void	fill_map(mlx_window *map)
 {
 	int	x;
 	int	y;

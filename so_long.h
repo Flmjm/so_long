@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:59 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 16:08:49 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/23 04:56:24 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@ typedef struct mlx_window
 	void	*window;
 	void	*wall_texture;
 	void	*coin_texture;
+	void	*coin_texture_2;
+	void	*coin_texture_3;
 	void	*exit_texture;
+	void	*exit_open_texture;
 	void	*background_texture;
-	void	*character_texture;
+	void	*character_texture_right;
+	void	*character_texture_left;
+	void	*character_fall_texture_left;
+	void	*character_fall_texture_right;
 	int		x_player;
 	int		y_player;
+	int		player_direction;
 	int		old_x_player;
 	int		old_y_player;
 	int		x_window;

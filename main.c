@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vboxuser <vboxuser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:47:37 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/12 23:09:08 by vboxuser         ###   ########.fr       */
+/*   Updated: 2025/05/23 05:04:24 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int	main(int argc, char **argv)
 	mlx_window params;	
 	// start parse-------------------------------------------
 	if (argc > 2)
-		print_error("Error\nToo much arguments !", NULL);
+		print_error("Too much arguments !", NULL);
 	else if (argc < 2)
-		print_error("Error\nToo few arguments !", NULL);
+		print_error("Too few arguments !", NULL);
+	init_map(&params);
 	params.path = argv[1];
 	get_map_params(&params);
 	init_window(&params);
@@ -38,7 +39,7 @@ int	next_frame(mlx_window *params)
 	}
 	if (params->array[params->y_player / TEXTURE_SIZE][params->x_player / TEXTURE_SIZE] == 4 && (params->c_nbr == params->coin_collected))
 		free_mlx(params);
-	if (params->next_frame == 1000)
+	if (params->next_frame == 20000)
 	{
 		params->next_frame = 0;
 		if (params->array[params->y_player / TEXTURE_SIZE + 1][params->x_player/ TEXTURE_SIZE] != 1)
@@ -49,7 +50,6 @@ int	next_frame(mlx_window *params)
 		else
 			params->is_jumping = 0;
 	}
-	if (params->is_jumping == 1)
 		refresh_character(params);
 	return (0);
 }
@@ -62,7 +62,8 @@ void	*init_map(mlx_window *params)
 	params->coin_texture = NULL;
 	params->exit_texture = NULL;
 	params->background_texture = NULL;
-	params->character_texture = NULL;
+	params->character_texture_left = NULL;
+	params->character_texture_right = NULL;	
 	params->x_player = 0;
 	params->y_player = 0;
 	params->x_window = 0;
@@ -83,35 +84,7 @@ void	*init_map(mlx_window *params)
 	params->count_movement = 0;
 	params->is_jumping = 0;
 	params->next_frame = 0;
+	params->player_direction = 0;
 	return (params);
 }
-
-// delete --------------------------------------------------------------------------------
-// int	main(int argc, char **argv) //check parse error
-// {
-// 	int x,y;
-// 	x = 0;
-// 	y = 0;
-// 	if (argc == 1)
-// 		ft_printf("va chier");
-// 	mlx_window map;
-	
-// 	map.path = argv[1];
-	
-// 	get_map_params(&map);
-
-// 	ft_printf("x : %d | Y : %d | error = %d\n\n", map.map_x, map.map_y, map.error);
-// 	while (y < map.map_y)
-// 	{
-// 		x = 0;
-// 		while (x < map.map_x)
-// 		{
-// 			ft_printf("%d ", map.array[y][x]);
-// 			x++;
-// 		}
-// 		ft_printf("\n");
-// 		y++;
-// 	}
-// }
-
 
