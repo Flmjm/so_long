@@ -6,22 +6,22 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:59 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/23 04:56:24 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:01:13 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
 # include "minilibx/mlx.h"
 # include "libft/libft.h"
 # include <math.h>
 
 # ifndef TEXTURE_SIZE
-# define TEXTURE_SIZE 32
+#  define TEXTURE_SIZE	32
 # endif
 
-typedef struct mlx_window
+typedef struct t_mlx_window
 {
 	void	*mlx;
 	void	*window;
@@ -60,47 +60,51 @@ typedef struct mlx_window
 	int		coin_collected;
 	int		is_jumping;
 	int		next_frame;
-} mlx_window;
+}	t_mlx_window;
 
 // check_map.c
-void		*get_map_params(mlx_window *params);
-void		check_map_wall(mlx_window *params);
-void		if_ext_ok(mlx_window *params);
-void		*check_line(mlx_window *params);
-void		*fill_param(char c, mlx_window *params);
+void		*get_map_params(t_mlx_window *params);
+void		check_map_wall(t_mlx_window *params);
+void		*check_line(t_mlx_window *params);
+void		*fill_param(char c, t_mlx_window *params, int x, int y);
+void		check_flood_fill(t_mlx_window *params, t_mlx_window *map);
 
 //parse.c
-void		malloc_array(mlx_window *map);
-void		fill_map(mlx_window *map);
+void		malloc_array(t_mlx_window *map);
+void		fill_map(t_mlx_window *map);
+void		is_map_playable(t_mlx_window *map);
+void		flood_fill(t_mlx_window *params, int x, int y);
 
 // main.c
-int			next_frame(mlx_window *params);
-void		*init_map(mlx_window *params);
+int			next_frame(t_mlx_window *params);
+void		init_params_1(t_mlx_window *params);
+void		init_params_2(t_mlx_window *params);
+void		if_ext_ok(t_mlx_window *params);
+void		copy_value_for_check(t_mlx_window *map, t_mlx_window *cpy);
 
 // utils.c
-void		refresh_character(mlx_window *params);
-int			free_mlx(mlx_window *params);
-void		refresh_map(mlx_window *params);
-void		check_position_player(mlx_window *params);
-void		free_array(mlx_window *params);
-
+void		refresh_character(t_mlx_window *params);
+int			free_mlx(t_mlx_window *params);
+void		refresh_map(t_mlx_window *params);
+void		check_position_player(t_mlx_window *params);
+void		free_array(t_mlx_window *params);
 
 // listen.c
-void		setup_hook(mlx_window *params);
-int			handle_key(int keycode, mlx_window *params);
-int			resize_window(int new_size_y, int new_size_x, mlx_window *params);
-void		jumping(mlx_window *player);
+void		setup_hook(t_mlx_window *params);
+int			handle_key(int keycode, t_mlx_window *params);
+int			resize_window(int new_size_y, int new_size_x, t_mlx_window *params);
+void		jumping(t_mlx_window *player);
 
 // error.c
-void		check_map_error(mlx_window *params);
-void		print_error(char *error, mlx_window *params);
-void		kill_process(mlx_window *map);
+void		check_map_error(t_mlx_window *params);
+void		print_error(char *error, t_mlx_window *params);
+void		kill_process(t_mlx_window *map);
 
 // put_texture.c
-void		init_window(mlx_window *window);
-void		init_graphic(mlx_window *window);
-void		init_map_graphic(mlx_window *window);
-void		refresh(mlx_window *window);
-void	loop_init_map(mlx_window *window, int x, int y);
+void		init_window(t_mlx_window *window);
+void		init_graphic(t_mlx_window *window);
+void		init_map_graphic(t_mlx_window *window);
+void		refresh(t_mlx_window *window);
+void		loop_init_map(t_mlx_window *window, int x, int y);
 
-# endif
+#endif
