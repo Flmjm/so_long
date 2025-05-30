@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 18:49:29 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 15:49:39 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:52:36 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	refresh_character(t_mlx_window *params)
 
 void	check_position_player(t_mlx_window *params)
 {
-	if (params->array[params->y_player / TEXTURE_SIZE]
-		[params->x_player / TEXTURE_SIZE] == 1)
+	if (params->array[params->y_player / SPRITE_SIZE]
+		[params->x_player / SPRITE_SIZE] == 1)
 	{
 		params->x_player = params->old_x_player;
 		params->y_player = params->old_y_player;

@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:10:40 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 16:06:55 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:25:07 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	check_map_wall(t_mlx_window *params)
 		free(params->buf);
 		params->buf = NULL;
 		params->buf = get_next_line(params->fd);
-		params->init++;
 		while (x < params->map_x)
 		{
 			if ((y == 0 || y == params->map_y - 1) && params->buf[x] != '1')

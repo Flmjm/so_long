@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:37:49 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 16:12:49 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:28:13 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,15 @@ void	kill_process(t_mlx_window *map)
 		map->buf = get_next_line(map->fd);
 		free(map->buf);
 	}
+}
+
+void	copy_value_for_check(t_mlx_window *map, t_mlx_window *cpy)
+{
+	cpy->map_x = map->map_x;
+	cpy->map_y = map->map_y;
+	cpy->buf = NULL;
+	cpy->error = map->error;
+	cpy->init = map->init;
+	cpy->fd = map->fd;
+	cpy->path = map->path;
 }

@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:59 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 16:01:13 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:51:53 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 # include <math.h>
 
-# ifndef TEXTURE_SIZE
-#  define TEXTURE_SIZE	32
+# ifndef SPRITE_SIZE
+#  define SPRITE_SIZE	32
 # endif
 
 typedef struct t_mlx_window
@@ -74,13 +74,13 @@ void		malloc_array(t_mlx_window *map);
 void		fill_map(t_mlx_window *map);
 void		is_map_playable(t_mlx_window *map);
 void		flood_fill(t_mlx_window *params, int x, int y);
+void		fill_value_in_map(t_mlx_window *map);
 
 // main.c
 int			next_frame(t_mlx_window *params);
 void		init_params_1(t_mlx_window *params);
 void		init_params_2(t_mlx_window *params);
 void		if_ext_ok(t_mlx_window *params);
-void		copy_value_for_check(t_mlx_window *map, t_mlx_window *cpy);
 
 // utils.c
 void		refresh_character(t_mlx_window *params);
@@ -99,6 +99,7 @@ void		jumping(t_mlx_window *player);
 void		check_map_error(t_mlx_window *params);
 void		print_error(char *error, t_mlx_window *params);
 void		kill_process(t_mlx_window *map);
+void		copy_value_for_check(t_mlx_window *map, t_mlx_window *cpy);
 
 // put_texture.c
 void		init_window(t_mlx_window *window);

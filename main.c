@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:47:37 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 16:03:01 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:52:27 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ int	main(int argc, char **argv)
 int	next_frame(t_mlx_window *params)
 {
 	params->next_frame += 1;
-	if (params->array[params->y_player / TEXTURE_SIZE]
-		[params->x_player / TEXTURE_SIZE] != 1)
+	if (params->array[params->y_player / SPRITE_SIZE]
+		[params->x_player / SPRITE_SIZE] != 1)
 	{
 		params->old_x_player = params->x_player;
 		params->old_y_player = params->y_player;
 	}
-	if (params->array[params->y_player / TEXTURE_SIZE]
-		[params->x_player / TEXTURE_SIZE] == 4
+	if (params->array[params->y_player / SPRITE_SIZE]
+		[params->x_player / SPRITE_SIZE] == 4
 		&& (params->c_nbr == params->coin_collected))
 		free_mlx(params);
-	if (params->next_frame == 5000)
+	if (params->next_frame == 20000)
 	{
 		params->next_frame = 0;
-		if (params->array[params->y_player / TEXTURE_SIZE + 1]
-			[params->x_player / TEXTURE_SIZE] != 1)
+		if (params->array[params->y_player / SPRITE_SIZE + 1]
+			[params->x_player / SPRITE_SIZE] != 1)
 		{
 			params->is_jumping = 1;
-			params->y_player += TEXTURE_SIZE;
+			params->y_player += SPRITE_SIZE;
 		}
 		else
 			params->is_jumping = 0;
@@ -115,15 +115,4 @@ void	if_ext_ok(t_mlx_window *params)
 	ok = ft_strncmp(&params->path[i], ".ber", 4);
 	if (ok != 0)
 		print_error("Map is not a .ber", params);
-}
-
-void	copy_value_for_check(t_mlx_window *map, t_mlx_window *cpy)
-{
-	cpy->map_x = map->map_x;
-	cpy->map_y = map->map_y;
-	cpy->buf = NULL;
-	cpy->error = map->error;
-	cpy->init = map->init;
-	cpy->fd = map->fd;
-	cpy->path = map->path;
 }

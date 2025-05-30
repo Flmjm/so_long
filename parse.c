@@ -6,7 +6,7 @@
 /*   By: mleschev <mleschev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 18:50:11 by mleschev          #+#    #+#             */
-/*   Updated: 2025/05/27 15:47:23 by mleschev         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:55:53 by mleschev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,34 @@ void	malloc_array(t_mlx_window *map)
 
 void	fill_map(t_mlx_window *map)
 {
-	int	x;
-	int	y;
-
-	y = 0;
 	close(map->fd);
 	map->fd = open(map->path, O_RDONLY);
-	while (y < map->map_y)
+	if (map->buf)
+		free(map->buf);
+	fill_value_in_map(map);
+	map->error = 0;
+	while (map->error == 0)
 	{
 		if (map->buf)
+		{
 			free(map->buf);
+			map->buf = NULL;
+		}
+		else
+			break ;
+		map->buf = get_next_line(map->fd);
+	}
+}
+
+void	fill_value_in_map(t_mlx_window *map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map->map_y)
+	{
+		free(map->buf);
 		map->buf = get_next_line(map->fd);
 		x = 0;
 		while (x < map->map_x)
@@ -59,18 +77,6 @@ void	fill_map(t_mlx_window *map)
 			x++;
 		}
 		y++;
-	}
-	map->error = 0;
-	while (map->error == 0)
-	{
-		if (map->buf)
-		{
-			free(map->buf);
-			map->buf = NULL;
-		}
-		else
-			break ;
-		map->buf = get_next_line(map->fd);
 	}
 }
 
